@@ -3,8 +3,8 @@ import { FaMicrophone } from "react-icons/fa";
 
 const TextInput = ({ input, setInput, handleSend }) => {
   return (
-    <div className="p-6">
-      <div className="flex items-center gap-3 bg-[#1a1a25] p-2 pl-5 rounded-2xl border border-white/10 focus-within:border-pink-500/40 transition-all">
+    <div className="w-full p-4 border-t border-white/10">
+      <div className="w-full flex items-center gap-3 bg-[#1a1a25] p-2 pl-5 rounded-2xl border border-white/10 focus-within:border-pink-500/40 transition-all">
         <input 
           className="flex-1 bg-transparent border-none outline-none text-white text-sm placeholder:text-white/20"
           placeholder="Write your thoughts..."

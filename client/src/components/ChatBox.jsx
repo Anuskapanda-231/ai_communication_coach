@@ -4,9 +4,8 @@ const ChatBox = ({ children }) => {
   return (
     
     /* shadow-[0_0_50px_rgba(0,0,0,0.8)] adds depth, border-white/10 adds the edge glow */
-    <div className="w-full max-w-3xl h-[85vh] bg-[#0c0c12]/90 backdrop-blur-2xl border border-white/10 rounded-[2.5rem] flex flex-col shadow-[0_20px_80px_rgba(0,0,0,0.7)] z-10 relative overflow-hidden">
+    <div className="w-full max-w-3xl h-[85vh] bg-[#14141e]/90 backdrop-blur-xl border border-white/10 rounded-[2.5rem] flex flex-col shadow-[0_20px_80px_rgba(255,0,150,0.2)] z-10 relative overflow-hidden">
       
-      {/* Header with the glowing star icon */}
       <div className="flex items-center justify-between px-8 py-6 border-b border-white/5 bg-white/5">
         <div>
           <h1 className="text-white font-bold tracking-tight text-xl">PIPPO</h1>
