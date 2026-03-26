@@ -6,7 +6,7 @@ const aiService = {
   sendMessage: async (message) => {
     try {
       const response = await axios.post(`${API_URL}/chat`, { message });
-      return response.data.reply; 
+      return response.data; 
     } catch (error) {
       console.error("Connection Error:", error);
       return "Coach: Check your server connection.";
