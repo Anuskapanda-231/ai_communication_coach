@@ -1,5 +1,3 @@
-import React from "react";
-
 const MessageBubble = ({ msg }) => {
   const isUser = msg.role === "user";
 
@@ -10,10 +8,17 @@ const MessageBubble = ({ msg }) => {
         ? "bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-tr-none shadow-lg" 
         : "bg-[#1a1a25] text-white/90 border border-white/5 rounded-tl-none shadow-inner"
       }`}>
-        {msg.text}
+        {isUser ? (
+          msg.text
+        ) : (
+          <>
+            <p><strong>Reply:</strong> {msg.reply}</p>
+            <p><strong>Corrected:</strong> {msg.corrected}</p>
+            <p><strong>Feedback:</strong> {msg.feedback}</p>
+          </>
+        )}
       </div>
     </div>
   );
 };
-
 export default MessageBubble;

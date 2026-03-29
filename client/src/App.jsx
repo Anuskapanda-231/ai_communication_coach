@@ -11,23 +11,36 @@ export default function App() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSend = async () => {
-    if (!input.trim() || loading) return;
-    const userMsg = { id: Date.now(), role: "user", text: input };
-    setMessages((prev) => [...prev, userMsg]);
-    const currentInput = input;
-    setInput("");
-    setLoading(true);
+const handleSend = async () => {
+  if (!input.trim()) return;
+  const userMsg = { id: Date.now(), role: "user", text: input };
+  setMessages((prev) => [...prev, userMsg]);
+  const currentInput = input;
+  setInput("");
 
-    try {
-      const coachResponse = await aiService.sendMessage(currentInput); 
-      setMessages((prev) => [...prev, { id: Date.now() + 1, role: "assistant", text: coachResponse }]);
-    } catch (err) {
-      setMessages((prev) => [...prev, { id: Date.now(), role: "assistant", text: "Coach: Check your server connection." }]);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // Temporary analyzing bubble
+  const analyzingId = Date.now() + 1;
+  setMessages((prev) => [...prev, { id: analyzingId, role: "assistant", text: "Pippo is analyzing..." }]);
+
+  try {
+    const coachResponse = await aiService.sendMessage(currentInput);
+    // Replace analyzing bubble with actual reply
+    setMessages((prev) =>
+      prev.map((msg) =>
+        msg.id === analyzingId
+          ? { ...msg, reply: coachResponse.reply, corrected: coachResponse.corrected, feedback: coachResponse.feedback }
+          : msg
+      )
+    );
+  } catch (err) {
+    setMessages((prev) =>
+      prev.map((msg) =>
+        msg.id === analyzingId ? { ...msg, reply: "Coach: Check your server connection." } : msg
+      )
+    );
+  }
+};
+
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-[#050507] relative overflow-hidden p-4">
